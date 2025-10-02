@@ -1,4 +1,4 @@
-# Compass Sprint 6 Challenge 03 - Automação de Testes de API
+# Compass Challenge 03 - Automação de Testes de API
 
 ## 📋 Visão Geral
 Suíte de testes automatizados para a API ServeRest usando Robot Framework. Os testes cobrem gerenciamento de usuários, autenticação, gerenciamento de produtos e funcionalidade de carrinho de compras.
