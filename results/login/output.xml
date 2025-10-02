@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.13.5 on win32)" generated="20251002 02:01:06.064" rpa="false" schemaversion="4">
+<suite id="s1" name="Login Test" source="C:\Users\ghepp\Compass_Challenge_03\tests\login_test.robot">
+<test id="s1-t1" name="Fluxo de Login" line="12">
+<kw name="Realizar login com sucesso" library="login_keyword">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>${API_SESSION}</arg>
+<arg>${BASE_URL}</arg>
+<arg>timeout=${TIMEOUT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20251002 02:01:06.292" level="INFO">Creating Session using : alias=serverest, url=https://serverest.dev, headers={},                     cookies={}, auth=None, timeout=120, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20251002 02:01:06.292" endtime="20251002 02:01:06.293"/>
+</kw>
+<kw name="Fazer Login e Salvar Token" library="login_keyword">
+<var>${response}</var>
+<arg>${EMAIL_ADMIN}</arg>
+<arg>${USER_ADMIN.password}</arg>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>email=${email}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20251002 02:01:06.293" level="INFO">${body} = {'email': 'admin_robot_125@qa.com.br', 'password': 'Teste123'}</msg>
+<status status="PASS" starttime="20251002 02:01:06.293" endtime="20251002 02:01:06.293"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${API_SESSION}</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20251002 02:01:06.738" level="INFO">POST Request : url=https://serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '62', 'Content-Type': 'application/json'} 
+ body=b'{"email": "admin_robot_125@qa.com.br", "password": "Teste123"}' 
+ </msg>
+<msg timestamp="20251002 02:01:06.738" level="INFO">POST Response : url=https://serverest.dev/login 
+ status=200, reason=OK 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': 'b1023ac897058da44edacca94ee73b3b', 'date': 'Thu, 02 Oct 2025 05:01:03 GMT', 'server': 'Google Frontend', 'Content-Length': '285'} 
+ body={
+    "message": "Login realizado com sucesso",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluX3JvYm90XzEyNUBxYS5jb20uYnIiLCJwYXNzd29yZCI6IlRlc3RlMTIzIiwiaWF0IjoxNzU5MzgxMjYzLCJleHAiOjE3NTkzODE4NjN9.ud00rVEMNYN3sB28M_VS-T3p3j1U9YnY0cC5T1JOPmk"
+} 
+ </msg>
+<msg timestamp="20251002 02:01:06.738" level="INFO">C:\Users\ghepp\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg timestamp="20251002 02:01:06.738" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20251002 02:01:06.293" endtime="20251002 02:01:06.738"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${auth_header}</var>
+<arg>${response.json()['authorization']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20251002 02:01:06.739" level="INFO">${auth_header} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluX3JvYm90XzEyNUBxYS5jb20uYnIiLCJwYXNzd29yZCI6IlRlc3RlMTIzIiwiaWF0IjoxNzU5MzgxMjYzLCJleHAiOjE3NTkzODE4NjN9.ud00rVEMNYN3sB28M_VS-T3p3j1U9Yn...</msg>
+<status status="PASS" starttime="20251002 02:01:06.738" endtime="20251002 02:01:06.739"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${AUTH_HEADER}</arg>
+<arg>${auth_header}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20251002 02:01:06.739" level="INFO">${AUTH_HEADER} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluX3JvYm90XzEyNUBxYS5jb20uYnIiLCJwYXNzd29yZCI6IlRlc3RlMTIzIiwiaWF0IjoxNzU5MzgxMjYzLCJleHAiOjE3NTkzODE4NjN9.ud00rVEMNYN3sB28M_VS-T3p3j1U9Yn...</msg>
+<status status="PASS" starttime="20251002 02:01:06.739" endtime="20251002 02:01:06.739"/>
+</kw>
+<msg timestamp="20251002 02:01:06.739" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20251002 02:01:06.293" endtime="20251002 02:01:06.739"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${response.json()}</arg>
+<arg>authorization</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" starttime="20251002 02:01:06.739" endtime="20251002 02:01:06.740"/>
+</kw>
+<status status="PASS" starttime="20251002 02:01:06.292" endtime="20251002 02:01:06.740"/>
+</kw>
+<kw name="Tentar realizar login com senha invalida" library="login_keyword">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>email=${EMAIL_ADMIN}</arg>
+<arg>password=senhaerrada123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20251002 02:01:06.740" level="INFO">${body} = {'email': 'admin_robot_125@qa.com.br', 'password': 'senhaerrada123'}</msg>
+<status status="PASS" starttime="20251002 02:01:06.740" endtime="20251002 02:01:06.740"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${API_SESSION}</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=401</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20251002 02:01:06.915" level="INFO">POST Request : url=https://serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '68', 'Content-Type': 'application/json'} 
+ body=b'{"email": "admin_robot_125@qa.com.br", "password": "senhaerrada123"}' 
+ </msg>
+<msg timestamp="20251002 02:01:06.915" level="INFO">POST Response : url=https://serverest.dev/login 
+ status=401, reason=Unauthorized 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '3672aabf532d85074edacca94ee73b78', 'date': 'Thu, 02 Oct 2025 05:01:03 GMT', 'server': 'Google Frontend', 'Content-Length': '48'} 
+ body={
+    "message": "Email e/ou senha inválidos"
+} 
+ </msg>
+<msg timestamp="20251002 02:01:06.915" level="INFO">C:\Users\ghepp\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg timestamp="20251002 02:01:06.916" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20251002 02:01:06.740" endtime="20251002 02:01:06.916"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['message']}</arg>
+<arg>Email e/ou senha inválidos</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20251002 02:01:06.916" endtime="20251002 02:01:06.917"/>
+</kw>
+<status status="PASS" starttime="20251002 02:01:06.740" endtime="20251002 02:01:06.917"/>
+</kw>
+<kw name="Tentar realizar login com email invalido" library="login_keyword">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>email=email.invalido@qa.com.br</arg>
+<arg>password=senhaerrada123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20251002 02:01:06.919" level="INFO">${body} = {'email': 'email.invalido@qa.com.br', 'password': 'senhaerrada123'}</msg>
+<status status="PASS" starttime="20251002 02:01:06.918" endtime="20251002 02:01:06.919"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${API_SESSION}</arg>
+<arg>/login</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=401</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20251002 02:01:07.094" level="INFO">POST Request : url=https://serverest.dev/login 
+ path_url=/login 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '67', 'Content-Type': 'application/json'} 
+ body=b'{"email": "email.invalido@qa.com.br", "password": "senhaerrada123"}' 
+ </msg>
+<msg timestamp="20251002 02:01:07.095" level="INFO">POST Response : url=https://serverest.dev/login 
+ status=401, reason=Unauthorized 
+ headers={'access-control-allow-origin': '*', 'x-dns-prefetch-control': 'off', 'x-frame-options': 'SAMEORIGIN', 'strict-transport-security': 'max-age=15552000; includeSubDomains', 'x-download-options': 'noopen', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'content-type': 'application/json; charset=utf-8', 'x-cloud-trace-context': '689c958d8c2c60ce4edacca94ee73e9a', 'date': 'Thu, 02 Oct 2025 05:01:04 GMT', 'server': 'Google Frontend', 'Content-Length': '48'} 
+ body={
+    "message": "Email e/ou senha inválidos"
+} 
+ </msg>
+<msg timestamp="20251002 02:01:07.095" level="INFO">C:\Users\ghepp\AppData\Roaming\Python\Python313\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'serverest.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg timestamp="20251002 02:01:07.096" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20251002 02:01:06.919" endtime="20251002 02:01:07.096"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.json()['message']}</arg>
+<arg>Email e/ou senha inválidos</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20251002 02:01:07.097" endtime="20251002 02:01:07.099"/>
+</kw>
+<status status="PASS" starttime="20251002 02:01:06.918" endtime="20251002 02:01:07.099"/>
+</kw>
+<tag>login</tag>
+<status status="PASS" starttime="20251002 02:01:06.292" endtime="20251002 02:01:07.100"/>
+</test>
+<kw name="Delete All Sessions" library="RequestsLibrary" type="TEARDOWN">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20251002 02:01:07.105" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20251002 02:01:07.104" endtime="20251002 02:01:07.105"/>
+</kw>
+<status status="PASS" starttime="20251002 02:01:06.065" endtime="20251002 02:01:07.105"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">login</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Login Test">Login Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
