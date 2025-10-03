@@ -6,7 +6,7 @@ Resource          ../variables/global_variables.robot
 Resource          ../keywords/user_keyword.robot
 Resource          ../keywords/common_keyword.robot
 
-Suite Teardown    Delete All Sessions  
+Suite Teardown   Delete All Sessions
 
 *** Test Cases ***
 Fluxo de Usuarios

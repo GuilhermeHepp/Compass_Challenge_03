@@ -9,11 +9,13 @@ Resource          ../keywords/common_keyword.robot
 Suite Teardown    Delete All Sessions  
 
 *** Test Cases ***
-Fluxo de Usuarios
-    [Tags]    usuarios
-    Listar usuarios e validar schema
-    Cadastrar novo usuario com sucesso
-    Tentar cadastrar usuario com email duplicado
-    Buscar usuario por ID e validar dados
-    Editar usuario com sucesso
-    Excluir usuario com sucesso
+Fluxo de Produtos
+    [Tags]    produtos
+    [Setup]    Setup para Testes Autenticados
+    Listar produtos e validar schema
+    Cadastrar produto com sucesso
+    Tentar cadastrar produto com nome duplicado
+    Buscar produto por ID e validar dados
+    Editar produto com sucesso
+    Excluir produto com sucesso
+    
