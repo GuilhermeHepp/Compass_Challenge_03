@@ -5,6 +5,9 @@ Suíte de testes automatizados para a API ServeRest usando Robot Framework. Os t
 
 ## 🚀 Início Rápido
 ```bash
+#Entrar na paste do robot
+cd Robot_ServeRest
+
 # Usar script batch
 run_tests.bat
 
@@ -19,6 +22,8 @@ robot tests/carrinho_test.robot
 ```
 Compass_Challenge_03/
 ├── run_tests.bat           # Script de execução dos testes
+├── link_jira.txt          # Link para o projeto no Jira
+├── plano_de_teste.md      # Plano de teste detalhado
 ├── tests/                  # Suítes de teste individuais
 │   ├── user_test.robot    # Testes de gerenciamento de usuários
 │   ├── login_test.robot   # Testes de autenticação
@@ -73,14 +78,6 @@ robot tests/product_test.robot
 robot tests/carrinho_test.robot
 ```
 
-### Opção 2: Por Tags
-```bash
-robot --include usuarios tests/
-robot --include login tests/
-robot --include produtos tests/
-robot --include carrinhos tests/
-```
-
 ## 🏗️ Endpoints da API Testados
 
 | Endpoint | Método | Cobertura de Teste |
@@ -106,11 +103,17 @@ robot --include carrinhos tests/
 - Timeout: 120 segundos
 - Dados de teste para usuários, produtos e autenticação
 
-## 📝 Relatórios
+## 📝 Documentação
+
+### Relatórios de Execução
 A execução dos testes gera:
 - `report.html` - Resumo dos resultados dos testes
 - `log.html` - Log detalhado de execução
 - `output.xml` - Dados brutos dos testes
+
+### Documentação do Projeto
+- [`Plano_de_Teste_Definitivo.pdf`](Plano_de_Teste_Definitivo.pdf) - Plano de teste detalhado com estratégias e cenários
+- [`Link_jira.txt`](Link_jira.txt) - Link para o projeto no Jira com rastreamento de issues
 
 ## 🚀 Pronto para CI/CD
 A estrutura do projeto suporta integração com:
