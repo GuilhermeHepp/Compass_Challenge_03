@@ -43,7 +43,7 @@ Listar usuarios e validar schema
 
 Cadastrar novo usuario com sucesso
     ${email_comum}=    Gerar Email Aleatorio
-    Set Suite Variable    ${EMAIL_COMUM}    ${email_comum}
+    Set Global Variable    ${EMAIL_COMUM}    ${email_comum}
     ${response}=    Criar Novo Usuario e Salvar ID    ${USER_COMUM.nome}    ${email_comum}    ${USER_COMUM.password}    ${USER_COMUM.administrador}
     Should Be Equal As Strings    ${response.json()['message']}    Cadastro realizado com sucesso
 
