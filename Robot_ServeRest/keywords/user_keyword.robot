@@ -68,3 +68,8 @@ Excluir usuario com sucesso
     ${response}=    DELETE On Session    ${API_SESSION}    /usuarios/${USER_ID}
     Status Should Be    200    ${response}
     Should Be Equal As Strings    ${response.json()['message']}    Registro excluído com sucesso
+
+Falha ao criar usuario com senha maior que 8 caracteres
+    ${email_falha}=    Gerar Email Aleatorio
+    ${body}=    Create Dictionary    nome=Nome Falha    email=${email_falha}    password=123456789    administrador=false
+    ${response}=    POST On Session    ${API_SESSION}    /usuarios    json=${body}    expected_status=400
