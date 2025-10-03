@@ -6,11 +6,10 @@ echo.
 
 echo Escolha a opcao de execucao:
 echo 1. Executar suites individuais
-echo 2. Executar por tags
-echo 3. Gerar relatorios detalhados
+echo 2. Gerar relatorios detalhados
 echo.
 
-set /p escolha="Digite sua escolha (1-3): "
+set /p escolha="Digite sua escolha (1-2): "
 
 if "%escolha%"=="1" (
     echo.
@@ -22,15 +21,8 @@ if "%escolha%"=="1" (
     goto fim
 )
 
-if "%escolha%"=="2" (
-    echo.
-    echo Tags disponiveis: usuarios, login, produtos, carrinhos
-    set /p tag="Digite a tag para executar: "
-    robot --include %tag% --outputdir results tests/
-    goto fim
-)
 
-if "%escolha%"=="3" (
+if "%escolha%"=="2" (
     echo.
     echo Gerando relatorios detalhados...
     robot --outputdir results --report relatorio_detalhado.html --log log_detalhado.html --loglevel DEBUG tests/
